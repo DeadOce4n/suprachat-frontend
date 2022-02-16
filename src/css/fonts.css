@@ -1,0 +1,43 @@
+@font-face {
+    font-family: "Poppins";
+    font-weight: 200;
+    src: url(./fonts/Poppins-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 400;
+    src: url(./fonts/Poppins-Regular.ttf)
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 700;
+    src: url(./fonts/Poppins-Bold.ttf)
+}
+
+@font-face {
+    font-family: "Manrope";
+    src: url(./fonts/Manrope[wght].ttf);
+}
+
+@font-face {
+    font-family: "Bitter";
+    src: url(./fonts/Bitter-VariableFont_wght.ttf)
+}
+
+@font-face {
+    font-family: "Bitter";
+    font-style: italic;
+    src: url(./fonts/Bitter-Italic-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: "BabaPro";
+    src: url(./fonts/BabaPro-Bold.ttf);
+}
+
+@font-face {
+    font-family: "IBM Plex Mono";
+    src: url(./fonts/IBMPlexMono-Regular.ttf)
+}

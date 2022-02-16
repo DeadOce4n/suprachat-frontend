@@ -1,0 +1,77 @@
+@import "fonts.css";
+@import "app.css";
+
+:root {
+    --font-primary: "Manrope", sans-serif;
+    --font-secondary: "Poppins", sans-serif;
+    --font-logo: "BabaPro", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
+    --color-fg-dark: #ece4db;
+    --color-fg-accent-dark: #ffe66d;
+    --color-bg-dark: rgb(0,8,20);
+    --color-success-dark: green;
+    --color-error-dark: red;
+    --color-fg-light: #40403B;
+    --color-fg-accent-light: #3C315E;
+    --color-bg-light: #F2FDFF;
+    --color-success-light: #198A46;
+    --color-error-light: #CC2936;
+    font-size: 10px;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#___gatsby,
+#gatsby-focus-wrapper {
+  height: 100%;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0; padding: 0; 
+    font: 500 2rem /1.6 var(--font-primary);
+    transition: background-color 0.5s, color 0.5s;
+    scroll-behavior: smooth;
+}
+h1, h2, h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 1rem 0 1rem 0;
+    transition: color 0.5s;
+}
+p { margin-left: 0.5rem; }
+a { transition: color 0.5s; text-decoration: none; }
+code {
+    font-family: var(--font-mono);
+    font-size: 0.80em;
+    color: #03071e;
+    background-color: #ece4db;
+    padding: 2px 7px 3px;
+    margin: auto 3px;
+    border: 0px solid #ece4db;
+    border-radius: 7px;
+}
+
+pre {
+    background-color: #ece4db;
+    color: #03071e;
+    width: 100%;
+    padding: 0.3em 0.5em 0.7rem;
+    margin-bottom: 0.5em;
+    overflow: auto;
+    overflow-y: hidden;
+    border: 0px solid #ece4db;
+    border-radius: 7px;
+}
+
+@media only screen and (max-width: 40em) {
+    :root {
+        font-size: 8px;
+    }
+}
+
