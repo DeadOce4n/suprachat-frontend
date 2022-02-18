@@ -9,6 +9,7 @@ import Button from '../components/Button'
 const NotFoundPage = () => {
   return (
     <>
+      <Seo title='Oops! Página no encontrada 😔' />
       <section>
         <Container className='split'>
           <Hero>
