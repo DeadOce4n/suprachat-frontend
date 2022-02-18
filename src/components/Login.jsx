@@ -34,6 +34,9 @@ const Login = () => {
         case 404:
           setNotification({ message: 'Error: no existe un usuario con ese nick.', error: true })
           break
+        case 401:
+          setNotification({ message: 'Error: contraseña incorrecta.', error: true })
+          break
         default:
           setNotification({ message: 'Error desconocido.', error: true })
       }
