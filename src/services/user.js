@@ -50,16 +50,31 @@ const updatePicture = async (formData, nick, token) => {
 
 const isLoggedIn = () => {
   if (storageAvailable('localStorage')) {
-    return JSON.parse(localStorage.getItem('storedUser')).isAuthenticated
+    const userJson = localStorage.getItem('storedUser')
+    if (userJson) return JSON.parse(localStorage.getItem('storedUser')).isAuthenticated
+    return false
   }
   return false
 }
 
 const isVerified = () => {
   if (storageAvailable('localStorage')) {
-    return JSON.parse(localStorage.getItem('storedUser')).verified
+    const userJson = localStorage.getItem('storedUser')
+    if (userJson) return JSON.parse(localStorage.getItem('storedUser')).verified
+    return false
   }
   return false
+}
+
+const getStoredUser = () => {
+  if (storageAvailable('localStorage')) {
+    const userJson = localStorage.getItem('storedUser')
+    if (userJson) {
+      return JSON.parse(userJson)
+    }
+    return undefined
+  }
+  return undefined
 }
 
 const userService = {
@@ -71,7 +86,8 @@ const userService = {
   update,
   updatePicture,
   isLoggedIn,
-  isVerified
+  isVerified,
+  getStoredUser
 }
 
 export default userService

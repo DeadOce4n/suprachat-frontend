@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { navigate } from 'gatsby'
 import { useForm } from 'react-hook-form'
+import jwt_decode, { InvalidTokenError } from 'jwt-decode'
 import Seo from '../components/Seo'
 import AppContext from '../components/AppContext'
 import Container from '../components/Container'
@@ -19,10 +20,12 @@ const Login = () => {
     try {
       const response = await userService.login(data)
       setNotification({ error: false, message: `Bienvenido, ${data.username}!` })
+      const token = response.token
+      const decodedToken = jwt_decode(token)
       const newUser = {
-        ...response.user,
-        isAuthenticated: true,
-        token: response.token
+        ...decodedToken.user,
+        token,
+        isAuthenticated: true
       }
       context.setUser(newUser)
       if (storageAvailable('localStorage')) {
@@ -30,15 +33,23 @@ const Login = () => {
       }
       setTimeout(() => navigate('/'), 3000)
     } catch (e) {
-      switch (e.response.status) {
-        case 404:
-          setNotification({ message: 'Error: no existe un usuario con ese nick.', error: true })
-          break
-        case 401:
-          setNotification({ message: 'Error: contraseña incorrecta.', error: true })
-          break
-        default:
-          setNotification({ message: 'Error desconocido.', error: true })
+      if (e.response) {
+        switch (e.response.status) {
+          case 404:
+            setNotification({ message: 'Error: no existe un usuario con ese nick.', error: true })
+            break
+          case 401:
+            setNotification({ message: 'Error: contraseña incorrecta.', error: true })
+            break
+          default:
+            setNotification({ message: 'Error desconocido.', error: true })
+        }
+      } else if (e.request) {
+        setNotification({ message: 'Error: el sistema está caído.', error: true })
+      } else if (e instanceof InvalidTokenError) {
+        setNotification({ message: 'Error: token inválido.' })
+      } else {
+        setNotification({ message: 'Error desconocido.', error: true })
       }
       setTimeout(() => setNotification({ ...notification, message: '' }), 3000)
     }

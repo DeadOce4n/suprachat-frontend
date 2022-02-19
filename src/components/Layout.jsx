@@ -35,9 +35,9 @@ const Layout = ({ children }) => {
 
   useLayoutEffect(() => {
     if (storageAvailable('localStorage')) {
-      const storedUser = JSON.parse(localStorage.getItem('storedUser'))
+      const storedUser = localStorage.getItem('storedUser')
       if (storedUser) {
-        setUser(storedUser)
+        setUser(JSON.parse(storedUser))
       }
       const storedTheme = localStorage.getItem('theme')
       if (storedTheme) setTheme(storedTheme)

@@ -307,28 +307,37 @@ const Settings = () => {
   const [pictureUrl, setPictureUrl] = useState(null)
 
   useEffect(() => {
-    (async () => {
-      if (context.user.nick) {
-        try {
-          const user = await userService.getOne(context.user.nick)
-          if (user.user.country) setInfoValue('country', user.user.country)
-          if (user.user.about) setInfoValue('about', user.user.about)
-          setPictureUrl(`${baseUrl}/users/${context.user.nick}/picture`)
-        } catch (e) {
-          if (storageAvailable('localStorage')) {
-            localStorage.clear()
-          }
-          if (location.pathname !== '/app/login') navigate('/app/login')
-          context.setUser({
-            isAuthenticated: false,
-            token: null,
-            nick: null
-          })
-        }
-      }
+    if (userService.isLoggedIn()) {
+      const user = userService.getStoredUser()
+      context.setUser(user)
+      if (user.country) { setInfoValue('country', user.country) }
+      if (user.about) { setInfoValue('about', user.about) }
+      setPictureUrl(`${baseUrl}/users/${user.nick}/picture`)
+    } else {
+      navigate('/app/login')
     }
-    )()
-  }, [context.user])
+    // (async () => {
+    //   if (context.user.nick) {
+    //     try {
+    //       const user = await userService.getOne(context.user.nick)
+    //       if (user.user.country) setInfoValue('country', user.user.country)
+    //       if (user.user.about) setInfoValue('about', user.user.about)
+    //       setPictureUrl(`${baseUrl}/users/${context.user.nick}/picture`)
+    //     } catch (e) {
+    //       if (storageAvailable('localStorage')) {
+    //         localStorage.clear()
+    //       }
+    //       if (location.pathname !== '/app/login') navigate('/app/login')
+    //       context.setUser({
+    //         isAuthenticated: false,
+    //         token: null,
+    //         nick: null
+    //       })
+    //     }
+    //   }
+    // }
+    // )()
+  }, [])
 
   const onSubmitInfo = async data => {
     const formData = {
@@ -338,9 +347,14 @@ const Settings = () => {
     const token = context.user.token
     const nick = context.user.nick
     try {
-      const returnedUser = await userService.update(nick, formData, token)
-      if (returnedUser.error) {
-        throw new Error(returnedUser.error)
+      const response = await userService.update(nick, formData, token)
+      if (response.error) {
+        throw new Error(response.error)
+      }
+      const updatedUser = { ...context.user, ...response.fields }
+      context.setUser(updatedUser)
+      if (storageAvailable('localStorage')) {
+        localStorage.setItem('storedUser', JSON.stringify(updatedUser))
       }
       setNotification({
         message: 'Cambios guardados correctamente 🎉',
@@ -368,7 +382,6 @@ const Settings = () => {
       })
     } catch (e) {
       setNotification({ message: 'Error al subir imagen 😔', error: true })
-      console.log(e)
     }
     setTimeout(() => {
       setNotification({ ...notification, message: '' })
