@@ -28,14 +28,12 @@ const Verify = () => {
       const response = await userService.verify(userObject)
       const verifiedUser = { ...context.user, verified: true }
       context.setUser(verifiedUser)
-      console.log(response)
       if (storageAvailable('localStorage')) {
         localStorage.setItem('storedUser', JSON.stringify(verifiedUser))
       }
       setNotification({ message: 'Verificación correcta 🎉', error: false })
       setTimeout(() => navigate('/app/perfil'), 2000)
     } catch (e) {
-      console.log(e)
       setNotification({ message: 'Código de error inválido 😔', error: true })
       setTimeout(() => setNotification({ message: '', error: false }), 3000)
     }

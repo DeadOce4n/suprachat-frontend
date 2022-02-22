@@ -9,7 +9,7 @@ module.exports = {
     titleTemplate: '%s | SupraChat: nuestro vicio es chatear 💬',
     description:
       'SupraChat es un chat gratis sin registro y en español para conocer personas de todo el mundo. Nuestro vicio es chatear.',
-    image: '/astronaut.webp'
+    image: '/suprachat.net.jpg'
   },
   plugins: [
     'gatsby-plugin-image',
