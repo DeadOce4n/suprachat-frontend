@@ -28,9 +28,9 @@ const NotFoundPage = () => {
             </Button>
           </Hero>
           <StaticImage
-            src='../images/empty.jpeg'
+            src='../images/empty.webp'
             alt='Vacío'
-            title='En esta página no hay nada'
+            title='En esta página no hay nada | Imagen de sheetalmulay.com'
             placeholder='blurred'
           />
         </Container>
