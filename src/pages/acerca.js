@@ -33,7 +33,10 @@ const MemberInfo = styled.div`
   font: 400 1em var(--font-primary);
   display: flex;
   flex-direction: column;
-  padding: 4rem 3rem;
+  align-items: center;
+  padding: 3rem 3rem 4rem;
+  .nick { font: 700 1em var(--font-secondary); }
+  .email { font: 400 1em var(--font-mono); }
 `
 
 const AcercaPage = () => {
@@ -65,9 +68,9 @@ const AcercaPage = () => {
                 placeholder='blurred'
               />
               <MemberInfo>
-                <span>DeadOcean</span>
+                <span className='nick'>DeadOcean</span>
                 <span>Administrador</span>
-                <span>admin@suprachat.net</span>
+                <span className='email'>admin@suprachat.net</span>
               </MemberInfo>
             </MemberCard>
             <MemberCard>
@@ -77,9 +80,9 @@ const AcercaPage = () => {
                 placeholder='blurred'
               />
               <MemberInfo>
-                <span>Gusy</span>
+                <span className='nick'>Gusy</span>
                 <span>Operadora</span>
-                <span>gusy@suprachat.net</span>
+                <span className='email'>gusy@suprachat.net</span>
               </MemberInfo>
             </MemberCard>
             <MemberCard>
@@ -90,9 +93,9 @@ const AcercaPage = () => {
                 placeholder='blurred'
               />
               <MemberInfo>
-                <span>Rey</span>
+                <span className='nick'>Rey</span>
                 <span>Operador</span>
-                <span>rey@suprachat.net</span>
+                <span className='email'>rey@suprachat.net</span>
               </MemberInfo>
             </MemberCard>
           </TeamContainer>
