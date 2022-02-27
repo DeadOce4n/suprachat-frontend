@@ -55,6 +55,7 @@ code {
     padding: 2px 7px 3px;
     border: 0px solid #ece4db;
     border-radius: 7px;
+    white-space: nowrap;
 }
 ul { margin: 0 0 2rem 0; }
 li { margin-bottom: 1rem; }

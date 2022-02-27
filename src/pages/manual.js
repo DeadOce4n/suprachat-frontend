@@ -1,6 +1,7 @@
 import React from 'react'
 import Seo from '../components/Seo'
 import Container from '../components/Container'
+import { Link } from 'gatsby'
 
 const ManualPage = () => {
   return (
@@ -103,25 +104,12 @@ const ManualPage = () => {
         <Container className='narrow'>
           <h2 id='registrar-nicks'>Registrar nicks</h2>
           <p>
-            Si quieres que nadie más pueda usar tu nick, puedes registrarlo con
-            el siguiente comando:
-          </p>
-          <pre>
-            <code>
-              /ns register &lt;nick&gt; &lt;contraseña&gt; &lt;correo&gt;
-            </code>
-          </pre>
-          <p>Por ejemplo:</p>
-          <pre>
-            <code>/ns register DeadOcean pass123 admin@suprachat.net</code>
-          </pre>
-          <p>
-            Por favor, evita registrar varios nicks con varios correos
-            distintos, de ser descubierto se darán de baja TODAS las cuentas
-            asociadas. En su lugar, puedes <strong>agrupar</strong> varios nicks
-            a tu cuenta para que puedas cambiar entre ellos cuando quieras; para
-            ello simplemente te pones el nick que quieres agrupar (por ejemplo{' '}
-            <code>/nick DeadOcean</code>) y luego escribes el siguiente comando:
+            Si quieres que nadie más pueda usar tu nick, haz click <Link to='/app/registro'>aquí</Link>.
+            Por favor, toma en cuenta que está prohibido registrar varios nicks, en su
+            lugar debes <strong>agrupar</strong> varios nicks a tu cuenta para que
+            puedas alternar entre ellos cuando quieras; para ello simplemente te pones
+            el nick que quieres agrupar (por ejemplo <code>/nick DeadOcean</code>) y
+            luego escribes el siguiente comando:
           </p>
           <pre>
             <code>/ns group</code>
