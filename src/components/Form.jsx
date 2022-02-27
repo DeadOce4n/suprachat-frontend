@@ -134,7 +134,6 @@ export default Form
 export { Select }
 
 Form.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
   onSubmit: PropTypes.func,
   title: PropTypes.string
 }

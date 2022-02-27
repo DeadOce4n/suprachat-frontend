@@ -13,8 +13,8 @@ const ChatFrame = ({ src, title }) => (
 )
 
 ChatFrame.propTypes = {
-  src: PropTypes.string,
-  title: PropTypes.string
+  src: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 }
 
 export default ChatFrame

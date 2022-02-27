@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import AppContext from './AppContext'
-import PropTypes from 'prop-types'
 
 const StyledContainer = styled.div`
   display: flex;
@@ -36,20 +35,15 @@ const StyledContainer = styled.div`
   }
 `
 
-const Container = ({ children, className }) => {
+const Container = ({ children, ...rest }) => {
   const context = useContext(AppContext)
   const theme = context.theme
 
   return (
-    <StyledContainer theme={theme} className={className}>
+    <StyledContainer theme={theme} {...rest}>
       {children}
     </StyledContainer>
   )
 }
 
 export default Container
-
-Container.propTypes = {
-  children: PropTypes.any,
-  className: PropTypes.string
-}

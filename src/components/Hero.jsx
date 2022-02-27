@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
 const Container = styled.div`
   width: min(100%, 45rem);
@@ -42,7 +41,3 @@ const Hero = ({ children }) => {
 }
 
 export default Hero
-
-Hero.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element)
-}

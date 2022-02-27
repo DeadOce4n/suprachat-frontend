@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
 
 const StyledLink = styled(Link)`
   font: 700 0.875em var(--font-secondary);
@@ -24,7 +23,3 @@ const NavbarLink = props => {
 }
 
 export default NavbarLink
-
-NavbarLink.propTypes = {
-  children: PropTypes.string
-}
