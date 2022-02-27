@@ -104,7 +104,7 @@ const ManualPage = () => {
         <Container className='narrow'>
           <h2 id='registrar-nicks'>Registrar nicks</h2>
           <p>
-            Si quieres que nadie más pueda usar tu nick, haz click <Link to='/app/registro'>aquí</Link>.
+            Si quieres que nadie más pueda usar tu nick, haz click <Link to='/registro'>aquí</Link>.
             Por favor, toma en cuenta que está prohibido registrar varios nicks, en su
             lugar debes <strong>agrupar</strong> varios nicks a tu cuenta para que
             puedas alternar entre ellos cuando quieras; para ello simplemente te pones
