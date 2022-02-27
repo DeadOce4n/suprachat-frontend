@@ -21,9 +21,7 @@ const Verify = () => {
   })
 
   const onSubmit = async data => {
-    const nick = data.nick
-    const code = data.code
-    const userObject = { nick, code }
+    const userObject = { nick: data.nick, code: data.code }
     try {
       const response = await userService.verify(userObject)
       const verifiedUser = { ...context.user, verified: true }
@@ -34,7 +32,22 @@ const Verify = () => {
       setNotification({ message: 'Verificación correcta 🎉', error: false })
       setTimeout(() => navigate('/app/perfil'), 2000)
     } catch (e) {
-      setNotification({ message: 'Código de error inválido 😔', error: true })
+      if (e.response) {
+        switch (e.response.status) {
+          case 400:
+            setNotification({ message: 'Error: código inválido/faltante.', error: true })
+            break
+          case 500:
+            setNotification({ message: 'Error: error interno del servidor.', error: true })
+            break
+          default:
+            setNotification({ message: 'Error desconocido.', error: true })
+        }
+      } else if (e.request) {
+        setNotification({ message: 'Error: el sistema está caído.', error: true })
+      } else {
+        setNotification({ message: 'Error desconocido.', error: true })
+      }
       setTimeout(() => setNotification({ message: '', error: false }), 3000)
     }
   }
