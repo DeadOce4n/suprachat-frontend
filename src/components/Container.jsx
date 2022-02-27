@@ -28,7 +28,7 @@ const StyledContainer = styled.div`
       flex-direction: row;
       gap: 1rem;
     }
-    & > * {
+    &.split > * {
       flex-basis: 100%;
       align-items: center;
       justify-content: center;

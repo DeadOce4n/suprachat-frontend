@@ -20,6 +20,7 @@
 }
 *, *::before, *::after {
     box-sizing: border-box;
+    margin: 0;
 }
 
 html,
@@ -41,10 +42,10 @@ h1, h2, h3 {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     line-height: 1.2;
-    margin: 1rem 0 1rem 0;
+    margin: 0 0 2rem 0;
     transition: color 0.5s;
 }
-p { margin-left: 0.5rem; }
+p { margin: 0 0 2rem 0.5rem; }
 a { transition: color 0.5s; text-decoration: none; }
 code {
     font-family: var(--font-mono);
@@ -52,21 +53,39 @@ code {
     color: #03071e;
     background-color: #ece4db;
     padding: 2px 7px 3px;
-    margin: auto 3px;
     border: 0px solid #ece4db;
     border-radius: 7px;
 }
-
+ul { margin: 0 0 2rem 0; }
+li { margin-bottom: 1rem; }
+li:last-child { margin-bottom: 0; }
 pre {
     background-color: #ece4db;
     color: #03071e;
     width: 100%;
     padding: 0.3em 0.5em 0.7rem;
-    margin-bottom: 0.5em;
+    margin: 0 1rem 2rem;
     overflow: auto;
     overflow-y: hidden;
-    border: 0px solid #ece4db;
     border-radius: 7px;
+}
+
+.with-example {
+    display: flex;
+    flex-direction: column;
+    list-style-type: disc;
+}
+
+.example {
+    font-size: 1.5rem;
+    padding: 0 0 0 1rem;
+}
+
+.example + p,
+.example + h1,
+.example + h2,
+.example + h3 {
+    margin-top: 2rem;
 }
 
 @media only screen and (max-width: 40em) {
@@ -74,4 +93,3 @@ pre {
         font-size: 8px;
     }
 }
-

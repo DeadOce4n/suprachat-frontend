@@ -13,11 +13,11 @@ const ManualPage = () => {
         <Container className='narrow'>
           <h1>Manual de usuario de SupraChat</h1>
           <p>
-            Ya que SupraChat es un chat del tipo <strong>IRC</strong>, muchas de
-            las funciones se realizan a través de comandos, todos ellos (menos
-            los del <a href='#bot'>bot</a>) comienzan con una
-            <code>/</code>. Para enviar un comando simplemente se envía como
-            cualquier otro mensaje en el chat.
+            Ya que SupraChat es un chat del tipo <strong>IRC</strong>, muchas
+            de las funciones se realizan a través de comandos, todos ellos
+            (menos los del <a href='#bot'>bot</a>) comienzan con una <code>/</code>.
+            Para enviar un comando simplemente se envía como cualquier otro
+            mensaje en el chat.
           </p>
           <h2>Índice</h2>
           <ul className='compact'>
@@ -40,6 +40,10 @@ const ManualPage = () => {
               <a href='#entrar-por-fuera'>Entrar por fuera de la web</a>
             </li>
           </ul>
+        </Container>
+      </section>
+      <section>
+        <Container className='narrow'>
           <h2 id='comandos-basicos'>Comandos básicos</h2>
           <p>
             A continuación se muestran algunos de los comandos básicos y sus
@@ -47,38 +51,50 @@ const ManualPage = () => {
           </p>
           <ul>
             <li>
-              <code>/nick</code>: con este comando puedes cambiar tu nick a
-              algún otro que no esté en uso.
-              <strong>OJO</strong>: este comando solamente puede ser utilizado
-              por usuarios registrados.
-              <br />
-              <span className='example'>
-                Ejemplo: <code>/nick DeadOcean</code>
-              </span>
+              <div className='with-example'>
+                <span>
+                  <code>/nick</code>: con este comando puedes cambiar tu nick a
+                  algún otro que no esté en uso.{' '}
+                  <strong>OJO</strong>: este comando solamente puede ser utilizado
+                  por usuarios registrados.
+                </span>
+                <span className='example'>
+                  Ejemplo: <code>/nick DeadOcean</code>
+                </span>
+              </div>
             </li>
             <li>
-              <code>/join</code>: con este comando te puedes unir a una sala en
-              la que aún no estés.
-              <br />
-              <span className='example'>
-                Ejemplo: <code>/join #radionautica</code>
-              </span>
+              <div className='with-example'>
+                <span>
+                  <code>/join</code>: con este comando te puedes unir a una sala en
+                  la que aún no estés.
+                </span>
+                <span className='example'>
+                  Ejemplo: <code>/join #radionautica</code>
+                </span>
+              </div>
             </li>
             <li>
-              <code>/part</code>: con este comando te sales de la sala que
-              actualmente estás mirando.
-              <br />
-              <span className='example'>
-                Ejemplo: <code>/part #radionautica</code>
-              </span>
+              <div className='with-example'>
+                <span>
+                  <code>/part</code>: con este comando te sales de la sala que
+                  actualmente estás mirando.
+                </span>
+                <span className='example'>
+                  Ejemplo: <code>/part #radionautica</code>
+                </span>
+              </div>
             </li>
             <li>
-              <code>/query</code>: con este comando puedes abrir una
-              conversación privada con otro usuario.
-              <br />
-              <span className='example'>
-                Ejemplo: <code>/query DeadOcean</code>
-              </span>
+              <div className='with-example'>
+                <span>
+                  <code>/query</code>: con este comando puedes abrir una
+                  conversación privada con otro usuario.
+                </span>
+                <span className='example'>
+                  Ejemplo: <code>/query DeadOcean</code>
+                </span>
+              </div>
             </li>
           </ul>
         </Container>
@@ -102,11 +118,10 @@ const ManualPage = () => {
           <p>
             Por favor, evita registrar varios nicks con varios correos
             distintos, de ser descubierto se darán de baja TODAS las cuentas
-            asociadas. En su lugar, puedes <strong>agrupar</strong>
-            varios nicks a tu cuenta para que puedas cambiar entre ellos cuando
-            quieras; para ello simplemente te pones el nick que quieres agrupar
-            (por ejemplo <code>/nick DeadOcean</code>) y luego escribes el
-            siguiente comando:
+            asociadas. En su lugar, puedes <strong>agrupar</strong> varios nicks
+            a tu cuenta para que puedas cambiar entre ellos cuando quieras; para
+            ello simplemente te pones el nick que quieres agrupar (por ejemplo{' '}
+            <code>/nick DeadOcean</code>) y luego escribes el siguiente comando:
           </p>
           <pre>
             <code>/ns group</code>
@@ -150,44 +165,40 @@ const ManualPage = () => {
               <code>+</code>: este símbolo significa que el usuario tiene{' '}
               <strong>voz</strong> en la sala. Por ejemplo, si{' '}
               <code>+DeadOcean</code> está en la sala, significa que{' '}
-              <code>DeadOcean</code>
-              tiene <strong>voz</strong> en dicha sala. Los usuarios con{' '}
-              <strong>voz</strong> pueden hablar en las salas moderadas. Este
-              privilegio se otorga con el modo <strong>+v</strong>.
+              <code>DeadOcean</code> tiene <strong>voz</strong> en dicha sala.
+              Los usuarios con <strong>voz</strong> pueden hablar en las salas
+              moderadas. Este privilegio se otorga con el modo <strong>+v</strong>.
             </li>
             <li>
               <code>%</code>: este símbolo significa que el usuario es un{' '}
               <em>halfop</em> (semi-operador) de la sala. Por ejemplo, si{' '}
               <code>%DeadOcean</code> está en la sala, significa que{' '}
-              <code>DeadOcean</code>
-              es un <em>halfop</em> en dicha sala. Los usuarios con este símbolo
-              pueden <em>kickear</em> (sacar de la sala) a otros usuarios, pero
-              no pueden <em>bannearlos</em> (vetarlos), además pueden otorgar
-              <strong>voz</strong> a otros usuarios. Este privilegio se otorga
-              con el modo <strong>+h</strong>.
+              <code>DeadOcean</code> es un <em>halfop</em> en dicha sala. Los
+              usuarios con este símbolo pueden <em>kickear</em> (sacar de la
+              sala) a otros usuarios, pero no pueden <em>bannearlos</em>
+              (vetarlos), además pueden otorgar <strong>voz</strong> a otros
+              usuarios. Este privilegio se otorga con el modo <strong>+h</strong>.
             </li>
             <li>
               <code>@</code>: este símbolo significa que el usuario es un{' '}
               <strong>operador</strong> de la sala. Por ejemplo, si{' '}
               <code>@DeadOcean</code> está en la sala, significa que{' '}
-              <code>DeadOcean</code>
-              es un <strong>operador</strong> de dicha sala. Los{' '}
-              <strong>operadores</strong> pueden cambiar todos los modos de la
-              sala, <em>bannear/kickear</em> usuarios y dar/quitar privilegios
-              de operador a otros usuarios en la sala. Este privilegio se otorga
-              con el modo <strong>+o</strong>.
+              <code>@DeadOcean</code> es un <strong>operador</strong> de dicha
+              sala. Los <strong>operadores</strong> pueden cambiar todos los
+              modos de la sala, <em>bannear/kickear</em> usuarios y dar/quitar
+              privilegios de operador a otros usuarios en la sala. Este privilegio
+              se otorga con el modo <strong>+o</strong>.
             </li>
             <li>
               <code>&amp;</code>: este símbolo significa que el usuario es un{' '}
               <strong>administrador</strong> de la sala. Por ejemplo, si{' '}
               <code>&amp;DeadOcean</code> está en la sala, significa que{' '}
-              <code>DeadOcean</code>
-              es un <strong>administrador</strong> de la sala. Los{' '}
-              <strong>administradores</strong> son iguales a los{' '}
-              <strong>operadores</strong>, pero los{' '}
-              <strong>operadores (@)</strong> no pueden <em>kickear</em>
-              ni quitar sus privilegios a los <strong>administradores</strong>.
-              Este privilegio se otorga con el modo <strong>+a</strong>.
+              <code>DeadOcean</code> es un <strong>administrador</strong> de
+              la sala. Los <strong>administradores</strong> son iguales a los{' '}
+              <strong>operadores</strong>, pero los <strong>operadores (@) </strong>
+              no pueden <em>kickear</em> ni quitar sus privilegios a los{' '}
+              <strong>administradores</strong>. Este privilegio se otorga con
+              el modo <strong>+a</strong>.
             </li>
             <li>
               <code>~</code>: este símbolo significa que el usuario es un{' '}

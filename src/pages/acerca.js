@@ -11,7 +11,7 @@ const TeamContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  margin-top: 3rem;
+  margin: 2rem 0;
   @media only screen and (min-width: 40em) {
     flex-direction: row;
     flex-wrap: wrap;
