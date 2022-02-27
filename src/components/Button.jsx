@@ -30,6 +30,6 @@ const Button = props => {
 
 export default Button
 
-Button.PropTypes = {
-  primary: PropTypes.bool.isRequired
+Button.propTypes = {
+  primary: PropTypes.bool
 }
