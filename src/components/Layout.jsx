@@ -74,8 +74,8 @@ const Layout = ({ children }) => {
             <main style={{ flex: 1 }}>{children}</main>
             <Footer name='SupraChat' author='DeadOcean' />
             <Radio
-              radioUrl='https://radionautica.xyz/radio/8000/radio.mp3'
-              socketUrl='wss://radionautica.xyz/api/live/nowplaying/radionautica'
+              radioUrl={process.env.GATSBY_RADIO_URL}
+              socketUrl={process.env.GATSBY_SOCKET_URL}
             />
           </div>
         </ThemeProvider>
