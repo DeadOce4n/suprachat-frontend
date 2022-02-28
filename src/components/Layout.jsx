@@ -7,6 +7,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import '../css/index.css'
+import Radio from './radio/Radio.jsx'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -72,6 +73,10 @@ const Layout = ({ children }) => {
             <Navbar pages={pages} />
             <main style={{ flex: 1 }}>{children}</main>
             <Footer name='SupraChat' author='DeadOcean' />
+            <Radio
+              radioUrl='https://radionautica.xyz/radio/8000/radio.mp3'
+              socketUrl='wss://radionautica.xyz/api/live/nowplaying/radionautica'
+            />
           </div>
         </ThemeProvider>
       </AppContext.Provider>

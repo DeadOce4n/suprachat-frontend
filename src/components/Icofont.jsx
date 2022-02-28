@@ -1,6 +1,5 @@
 // This component contains only the following icons:
-// music-alt, microphone-alt, microphone, retro-music-disk, music-disk, music,
-// radio-mic, facebook, skype, instagram, moon, sun, play-alt-1, pause.
+// ui-camera, sun, moon, play-alt-1, pause, rounded-up
 import React from 'react'
 import '../css/icofont.min.css'
 

@@ -16,6 +16,8 @@
     --color-bg-light: #F2FDFF;
     --color-success-light: #198A46;
     --color-error-light: #CC2936;
+    --color-bg-player-dark: hsl(216, 100%, 6%);
+    --color-bg-player-light: #EBFCFF;
     font-size: 10px;
 }
 *, *::before, *::after {
