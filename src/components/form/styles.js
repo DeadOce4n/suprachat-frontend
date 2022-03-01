@@ -1,8 +1,6 @@
-import React, { forwardRef } from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
-const FormContainer = styled.div`
+const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11,7 +9,7 @@ const FormContainer = styled.div`
   h1 { text-align: center; }
 `
 
-const StyledForm = styled.form`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -100,40 +98,11 @@ const SelectWrapper = styled.div`
   }
 `
 
-const Select = forwardRef(({ children, onChange, onBlur, name, label }, ref) => {
-  return (
-    <>
-      <label htmlFor='countries'>{label}</label>
-      <SelectWrapper>
-        <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-          {children}
-        </select>
-      </SelectWrapper>
-    </>
-  )
-})
-
-Select.displayName = 'Select'
-
-const Form = ({ children, onSubmit, title }) => {
-  return (
-    <>
-      <FormContainer>
-        {title ? <h1>{title}</h1> : null}
-        <StyledForm onSubmit={onSubmit}>
-          <InputFields>
-            {children}
-          </InputFields>
-        </StyledForm>
-      </FormContainer>
-    </>
-  )
+const StyledForm = {
+  Container,
+  Form,
+  InputFields,
+  SelectWrapper
 }
 
-export default Form
-export { Select }
-
-Form.propTypes = {
-  onSubmit: PropTypes.func,
-  title: PropTypes.string
-}
+export default StyledForm

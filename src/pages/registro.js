@@ -5,7 +5,7 @@ import Seo from '../components/Seo'
 import userService from '../services/user'
 import Container from '../components/Container'
 import Button from '../components/Button'
-import Form from '../components/Form'
+import Form from '../components/form/Form'
 import Notification from '../components/Notification'
 
 const forbiddenChars = [
