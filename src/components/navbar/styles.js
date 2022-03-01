@@ -120,11 +120,12 @@ const End = styled.div`
   transition: opacity 0.5s, max-height 0.2s;
   white-space: nowrap;
   
-  & > * {
+  button, a {
     padding: 1rem;
     margin: 0 1rem 1rem;
     width: 100%;
-  } i {
+  }
+  i {
     color: var(--color-fg-accent-${props => props.theme.theme});
     margin-right: 1rem;
   }
@@ -139,7 +140,7 @@ const End = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    & > * {
+    button, a {
       padding: 1rem 2rem;
       margin: 0;
     }

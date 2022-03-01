@@ -72,7 +72,7 @@ const Navbar = ({ pages }) => {
           {context.user.isAuthenticated
             ? (
               <>
-                <Link to='/app/perfil' onClick={() => setVisible(!visible)}>{context.user.nick}</Link>
+                <Link to='/app/perfil' onClick={() => setVisible(!visible)}><Icofont className='icofont-user' />{context.user.nick}</Link>
                 <Button onClick={handleClickLogout}>Cerrar sesión</Button>
               </>
               )
