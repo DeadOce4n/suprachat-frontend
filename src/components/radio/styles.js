@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const PlayerContainer = styled.div`
+const Container = styled.div`
   font: 600 0.8125em var(--font-primary);
   position: fixed;
   bottom: 0;
@@ -116,7 +116,7 @@ const Streamer = styled.div`
 `
 
 const Player = {
-  PlayerContainer,
+  Container,
   Controls,
   Button,
   ToggleButton,

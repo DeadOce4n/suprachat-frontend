@@ -95,7 +95,7 @@ const Radio = ({ radioUrl, socketUrl }) => {
       <Player.ToggleButton onClick={handleToggle} aria-label='hide/show player' className={visible ? 'down' : ''}>
         <Icofont className='icofont-rounded-up' />
       </Player.ToggleButton>
-      <Player.RadioContainer className={visible ? 'visible' : ''}>
+      <Player.Container className={visible ? 'visible' : ''}>
         <Player.Controls>
           <Player.Button onClick={handlePlayPause} aria-label='play/pause button'>
             <Icofont className={isPlaying ? 'icofont-pause' : 'icofont-play-alt-1'} />
@@ -104,7 +104,7 @@ const Radio = ({ radioUrl, socketUrl }) => {
         </Player.Controls>
         <Player.SongInfo><span>{metadata.title} - {metadata.artist}</span></Player.SongInfo>
         <Player.Streamer><Icofont className='icofont-radio-mic' />{metadata.streamerName || 'AutoDJ'}</Player.Streamer>
-      </Player.RadioContainer>
+      </Player.Container>
     </>
   )
 }
