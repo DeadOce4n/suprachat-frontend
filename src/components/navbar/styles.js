@@ -1,14 +1,6 @@
-import React, { useState, useContext } from 'react'
-import { Link, navigate } from 'gatsby'
-import styled, { ThemeProvider } from 'styled-components'
-import PropTypes from 'prop-types'
-import AppContext from './AppContext'
-import storageAvailable from '../utils/storageAvailable'
-import Button from './Button'
-import NavbarLink from './NavbarLink'
-import Icofont from './Icofont'
+import styled from 'styled-components'
 
-const NavbarWrapper = styled.nav`
+const Container = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -21,7 +13,7 @@ const NavbarWrapper = styled.nav`
   }
 `
 
-const NavbarStart = styled.div`
+const Start = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -93,7 +85,7 @@ const BurgerButton = styled.button`
   }
 `
 
-const NavbarMenu = styled.div`
+const Menu = styled.div`
   display: flex;
   flex-direction: column;
   opacity: ${props => (props.visible ? 1 : 0)};
@@ -114,7 +106,7 @@ const NavbarMenu = styled.div`
 
 `
 
-const NavbarEnd = styled.div`
+const End = styled.div`
   font: 700 1em var(--font-secondary);
   display: flex;
   flex-direction: column;
@@ -175,90 +167,14 @@ const ThemeButton = styled.button`
   }
 `
 
-const Navbar = ({ pages }) => {
-  const context = useContext(AppContext)
-  const [visible, setVisible] = useState(false)
-  const toggleTheme = () => context.setTheme(context.theme === 'light' ? 'dark' : 'light')
-
-  const handleClickRegister = () => {
-    navigate('/registro')
-    setVisible(!visible)
-  }
-
-  const handleClickLogin = () => {
-    navigate('/app/login')
-    setVisible(!visible)
-  }
-
-  const handleClickLogout = () => {
-    if (storageAvailable('localStorage')) {
-      localStorage.clear()
-    }
-    if (location.pathname !== '/app/login') navigate('/app/login')
-    setVisible(!visible)
-    context.setUser({
-      isAuthenticated: false,
-      token: null,
-      nick: null
-    })
-  }
-
-  const handleToggle = () => {
-    toggleTheme()
-    setVisible(!visible)
-    if (storageAvailable('localStorage')) {
-      localStorage.setItem('theme', context.theme === 'light' ? 'dark' : 'light')
-    }
-  }
-
-  return (
-    <ThemeProvider theme={{ theme: context.theme }}>
-      <NavbarWrapper>
-        <NavbarStart>
-          <Logo>
-            <Link to='/'>SUPRACHAT</Link>
-          </Logo>
-          <BurgerButton
-            onClick={() => setVisible(!visible)}
-            visible={visible}
-            aria-label='burger-menu'
-          >
-            <span />
-            <span />
-            <span />
-          </BurgerButton>
-        </NavbarStart>
-        <NavbarMenu visible={visible}>
-          {pages ? pages.map(page => <NavbarLink key={page.name} to={page.route} onClick={() => setVisible(!visible)}>{page.name}</NavbarLink>) : null}
-          <ThemeButton onClick={handleToggle}>
-            <Icofont className={context.theme === 'dark' ? 'icofont-moon' : 'icofont-sun'} />
-          </ThemeButton>
-        </NavbarMenu>
-        <NavbarEnd visible={visible}>
-          {context.user.isAuthenticated
-            ? (
-              <>
-                <Link to='/app/perfil' onClick={() => setVisible(!visible)}>{context.user.nick}</Link>
-                <Button onClick={handleClickLogout}>Cerrar sesión</Button>
-              </>
-              )
-            : (
-              <>
-                <Button onClick={handleClickRegister}>Registrarse</Button>
-                <Button primary onClick={handleClickLogin}>Iniciar sesión</Button>
-              </>
-              )}
-        </NavbarEnd>
-      </NavbarWrapper>
-    </ThemeProvider>
-  )
+const Nav = {
+  Container,
+  Start,
+  Logo,
+  BurgerButton,
+  Menu,
+  End,
+  ThemeButton
 }
 
-export default Navbar
-
-Navbar.propTypes = {
-  pages: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    route: PropTypes.string.isRequired
-  }).isRequired).isRequired
-}
+export default Nav
