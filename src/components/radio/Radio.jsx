@@ -33,7 +33,6 @@ const Radio = ({ radioUrl, socketUrl }) => {
 
   useEffect(() => {
     if (nowPlaying) {
-      console.log(nowPlaying)
       setMetadata({
         title: nowPlaying.now_playing.song.title,
         artist: nowPlaying.now_playing.song.artist,
