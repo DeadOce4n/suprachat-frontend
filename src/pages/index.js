@@ -12,8 +12,8 @@ const IndexPage = () => {
   return (
     <>
       <Seo
-        title='Inicio'
-        description='SupraChat es un chat gratis sin registro y en español para conocer personas de todo el mundo. Nuestro vicio es chatear.'
+        title='Chat gratis, con imágenes y en español'
+        description='SupraChat es un chat gratis sin registro y en español para conocer personas de todo el mundo. Se permite el envío de imágenes, videos y audios.'
       />
       <section>
         <Container className='split'>
