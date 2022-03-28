@@ -21,7 +21,7 @@ const ChatFrame = loadable(() => import('../components/ChatFrame'), {
 
 const ChatPage = () => {
   const context = useContext(AppContext)
-  const chatUrl = process.env.GATSBY_KIWI_URL
+  const chatUrl = `${process.env.GATSBY_KIWI_URL}?channel=${process.env.GATSBY_CHANNELS}`
   const [nick, setNick] = useState('')
 
   useEffect(() => {
@@ -29,6 +29,8 @@ const ChatPage = () => {
       setNick(context.user.nick)
     }
   }, [])
+
+  console.log(`${chatUrl}&nick=${nick}`)
 
   return (
     <>
@@ -44,7 +46,7 @@ const ChatPage = () => {
             tienes dudas 😉
           </h3>
           <ChatFrame
-            src={nick.length > 0 ? `${chatUrl}/?nick=${nick}` : chatUrl}
+            src={nick.length > 0 ? `${chatUrl}&nick=${nick}` : chatUrl}
             title='Ventana del chat.'
           />
         </Container>
