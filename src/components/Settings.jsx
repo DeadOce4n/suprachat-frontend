@@ -351,7 +351,7 @@ const Settings = () => {
       if (response.error) {
         throw new Error(response.error)
       }
-      const updatedUser = { ...context.user, ...response.fields }
+      const updatedUser = { ...context.user, ...response }
       context.setUser(updatedUser)
       if (storageAvailable('localStorage')) {
         localStorage.setItem('storedUser', JSON.stringify(updatedUser))

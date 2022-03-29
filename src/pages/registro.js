@@ -48,7 +48,7 @@ const Registro = () => {
     }
     try {
       const returnedUser = await userService.register(newUser)
-      setNotification({ message: `Usuario ${returnedUser.created.nick} registrado con éxito!`, error: false })
+      setNotification({ message: `Usuario ${returnedUser.nick} registrado con éxito!`, error: false })
       setTimeout(() => navigate('/app/login'), 3000)
     } catch (e) {
       switch (e.response.status) {
