@@ -290,9 +290,7 @@ const Settings = () => {
   const {
     register: registerPicture,
     handleSubmit: handleSubmitPicture,
-    watch: watchPicture,
-    setValue: setPictureValue,
-    formState: pictureFormState
+    setValue: setPictureValue
   } = useForm({
     defaultValues: {
       picture: null
