@@ -322,27 +322,6 @@ const Settings = () => {
     } else {
       navigate('/app/login')
     }
-    // (async () => {
-    //   if (context.user.nick) {
-    //     try {
-    //       const user = await userService.getOne(context.user.nick)
-    //       if (user.user.country) setInfoValue('country', user.user.country)
-    //       if (user.user.about) setInfoValue('about', user.user.about)
-    //       setPictureUrl(`${baseUrl}/users/${context.user.nick}/picture`)
-    //     } catch (e) {
-    //       if (storageAvailable('localStorage')) {
-    //         localStorage.clear()
-    //       }
-    //       if (location.pathname !== '/app/login') navigate('/app/login')
-    //       context.setUser({
-    //         isAuthenticated: false,
-    //         token: null,
-    //         nick: null
-    //       })
-    //     }
-    //   }
-    // }
-    // )()
   }, [])
 
   const onSubmitInfo = async data => {
