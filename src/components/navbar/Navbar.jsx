@@ -10,9 +10,14 @@ import NavbarLink from './NavbarLink'
 import Icofont from '../Icofont'
 
 const Navbar = ({ pages }) => {
-  const context = useContext(AppContext)
+  const {
+    theme,
+    setTheme,
+    user,
+    setUser
+  } = useContext(AppContext)
   const [visible, setVisible] = useState(false)
-  const toggleTheme = () => context.setTheme(context.theme === 'light' ? 'dark' : 'light')
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
 
   const handleClickRegister = () => {
     navigate('/registro')
@@ -30,7 +35,7 @@ const Navbar = ({ pages }) => {
     }
     if (location.pathname !== '/app/login') navigate('/app/login')
     setVisible(!visible)
-    context.setUser({
+    setUser({
       isAuthenticated: false,
       token: null,
       nick: null
@@ -41,12 +46,12 @@ const Navbar = ({ pages }) => {
     toggleTheme()
     setVisible(!visible)
     if (storageAvailable('localStorage')) {
-      localStorage.setItem('theme', context.theme === 'light' ? 'dark' : 'light')
+      localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light')
     }
   }
 
   return (
-    <ThemeProvider theme={{ theme: context.theme }}>
+    <ThemeProvider theme={{ theme: theme }}>
       <Nav.Container>
         <Nav.Start>
           <Nav.Logo>
@@ -65,14 +70,14 @@ const Navbar = ({ pages }) => {
         <Nav.Menu visible={visible}>
           {pages ? pages.map(page => <NavbarLink key={page.name} to={page.route} onClick={() => setVisible(!visible)}>{page.name}</NavbarLink>) : null}
           <Nav.ThemeButton onClick={handleToggle}>
-            <Icofont className={context.theme === 'dark' ? 'icofont-moon' : 'icofont-sun'} />
+            <Icofont className={theme === 'dark' ? 'icofont-moon' : 'icofont-sun'} />
           </Nav.ThemeButton>
         </Nav.Menu>
         <Nav.End visible={visible}>
-          {context.user.isAuthenticated
+          {user.isAuthenticated
             ? (
               <>
-                <Link to='/app/perfil' onClick={() => setVisible(!visible)}><Icofont className='icofont-user' />{context.user.nick}</Link>
+                <Link to='/app/perfil' onClick={() => setVisible(!visible)}><Icofont className='icofont-user' />{user.nick}</Link>
                 <Button onClick={handleClickLogout}>Cerrar sesión</Button>
               </>
               )

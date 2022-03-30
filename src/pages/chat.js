@@ -20,13 +20,13 @@ const ChatFrame = loadable(() => import('../components/ChatFrame'), {
 })
 
 const ChatPage = () => {
-  const context = useContext(AppContext)
+  const { user } = useContext(AppContext)
   const chatUrl = `${process.env.GATSBY_KIWI_URL}?channel=${process.env.GATSBY_CHANNELS}`
   const [nick, setNick] = useState('')
 
   useEffect(() => {
-    if (context.user.isAuthenticated) {
-      setNick(context.user.nick)
+    if (user.isAuthenticated) {
+      setNick(user.nick)
     }
   }, [])
 
