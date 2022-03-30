@@ -58,6 +58,7 @@ const InputFields = styled.div`
     border: none;
     border-radius: 10px;
     padding: 1.5rem;
+    margin-bottom: 1rem;
   }
   .error {
     font-size: 1.2rem;
