@@ -11,7 +11,7 @@ const StyledFooter = styled.footer`
 `
 
 const Footer = ({ name, author }) => {
-  const context = useContext(AppContext)
+  const { theme } = useContext(AppContext)
 
   return (
     <StyledFooter>
@@ -19,7 +19,7 @@ const Footer = ({ name, author }) => {
         <strong>&copy; {name}</strong>
       </span>
       <p>
-        Esta página fue creada con {context.theme === 'dark' ? '💛' : '🖤'} por {author}
+        Esta página fue creada con {theme === 'dark' ? '💛' : '🖤'} por {author}
       </p>
     </StyledFooter>
   )

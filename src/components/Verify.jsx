@@ -11,7 +11,7 @@ import storageAvailable from '../utils/storageAvailable'
 import { navigate } from 'gatsby'
 
 const Verify = () => {
-  const context = useContext(AppContext)
+  const { user, setUser } = useContext(AppContext)
   const [notification, setNotification] = useState({ message: '', error: false })
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
@@ -24,8 +24,8 @@ const Verify = () => {
     const userObject = { nick: data.nick, code: data.code }
     try {
       const response = await userService.verify(userObject)
-      const verifiedUser = { ...context.user, verified: true }
-      context.setUser(verifiedUser)
+      const verifiedUser = { ...user, verified: true }
+      setUser(verifiedUser)
       if (storageAvailable('localStorage')) {
         localStorage.setItem('storedUser', JSON.stringify(verifiedUser))
       }
@@ -56,7 +56,7 @@ const Verify = () => {
     if (userService.isVerified()) {
       navigate('/')
     }
-    setValue('nick', context.user.nick)
+    setValue('nick', user.nick)
   }, [])
 
   return (

@@ -8,7 +8,7 @@ import Hero from '../components/Hero'
 import Button from '../components/Button'
 
 const IndexPage = () => {
-  const context = useContext(AppContext)
+  const { user } = useContext(AppContext)
   return (
     <>
       <Seo
@@ -21,7 +21,7 @@ const IndexPage = () => {
             <h1>Chatea gratis con gente de todo el mundo</h1>
             <p>Totalmente gratis y sin registro. Para siempre! Pero si decides registrarte, podrás obtener grandes beneficios 👀</p>
             <div className='buttons'>
-              {context.user.isAuthenticated
+              {user.isAuthenticated
                 ? null
                 : <Button
                     primary
@@ -30,7 +30,7 @@ const IndexPage = () => {
                   Registrarse
                   </Button>}
               <Button
-                {...{ primary: context.user.isAuthenticated }}
+                {...{ primary: user.isAuthenticated }}
                 onClick={() => navigate('/chat')}
               >
                 ¡Chatea ya!

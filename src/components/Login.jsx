@@ -13,7 +13,7 @@ import Notification from '../components/Notification'
 
 const Login = () => {
   const { register, handleSubmit } = useForm()
-  const context = useContext(AppContext)
+  const { user, setUser } = useContext(AppContext)
   const [notification, setNotification] = useState({ message: '', error: false })
 
   const onSubmit = async data => {
@@ -27,7 +27,7 @@ const Login = () => {
         token,
         isAuthenticated: true
       }
-      context.setUser(newUser)
+      setUser(newUser)
       if (storageAvailable('localStorage')) {
         localStorage.setItem('storedUser', JSON.stringify(newUser))
       }
@@ -56,7 +56,7 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if (context.user.isAuthenticated) {
+    if (user.isAuthenticated) {
       navigate('/')
     }
   }, [])

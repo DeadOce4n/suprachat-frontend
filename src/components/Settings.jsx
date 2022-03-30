@@ -309,13 +309,13 @@ const Settings = () => {
     message: '',
     error: false
   })
-  const context = useContext(AppContext)
+  const { user, setUser } = useContext(AppContext)
   const [pictureUrl, setPictureUrl] = useState(null)
 
   useEffect(() => {
     if (userService.isLoggedIn()) {
       const user = userService.getStoredUser()
-      context.setUser(user)
+      setUser(user)
       if (user.country) { setInfoValue('country', user.country) }
       if (user.about) { setInfoValue('about', user.about) }
       setPictureUrl(`${baseUrl}/users/${user.nick}/picture`)
@@ -332,15 +332,14 @@ const Settings = () => {
     if (data.password.length > 0) {
       formData.password = data.password
     }
-    const token = context.user.token
-    const nick = context.user.nick
+    const { token, nick } = user
     try {
       const response = await userService.update(nick, formData, token)
       if (response.error) {
         throw new Error(response.error)
       }
-      const updatedUser = { ...context.user, ...response }
-      context.setUser(updatedUser)
+      const updatedUser = { ...user, ...response }
+      setUser(updatedUser)
       if (storageAvailable('localStorage')) {
         localStorage.setItem('storedUser', JSON.stringify(updatedUser))
       }
@@ -358,7 +357,7 @@ const Settings = () => {
 
   const onSubmitPicture = async data => {
     try {
-      const { token, nick } = context.user
+      const { token, nick } = user
       const picture = data.picture[0]
       const formData = new FormData()
       formData.append('file', picture)
@@ -385,7 +384,7 @@ const Settings = () => {
 
   return (
     <>
-      <Seo title={`Editar perfil: ${context.user.nick}`} />
+      <Seo title={`Editar perfil: ${user.nick}`} />
       <section>
         {notification.message
           ? <Notification message={notification.message} error={notification.error} />
@@ -396,7 +395,7 @@ const Settings = () => {
               <UserAvatar>
                 <img
                   src={pictureUrl}
-                  alt={context.user.nick}
+                  alt={user.nick}
                 />
                 <Form>
                   <label htmlFor='upload-picture' className='file-input'>
@@ -418,7 +417,7 @@ const Settings = () => {
                   />
                 </Form>
               </UserAvatar>
-              <h1>{context.user.nick}</h1>
+              <h1>{user.nick}</h1>
             </UserInfo>
             <Form onSubmit={handleSubmitInfo(onSubmitInfo)}>
               <Select
