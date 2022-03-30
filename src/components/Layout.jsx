@@ -7,7 +7,8 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Navbar from './navbar/Navbar'
 import Footer from './Footer'
 import '../css/index.css'
-import Radio from './radio/Radio.jsx'
+import Radio from './radio/Radio'
+import Notification from './Notification'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -33,6 +34,10 @@ const Layout = ({ children }) => {
     isVerified: false
   })
   const [theme, setTheme] = useState('light')
+  const [notification, setNotification] = useState({
+    message: '',
+    error: false
+  })
 
   useLayoutEffect(() => {
     if (storageAvailable('localStorage')) {
@@ -58,7 +63,9 @@ const Layout = ({ children }) => {
         user,
         setUser,
         theme,
-        setTheme
+        setTheme,
+        notification,
+        setNotification
       }}
       >
         <ThemeProvider theme={{ theme }}>
@@ -71,6 +78,10 @@ const Layout = ({ children }) => {
           >
             <Particles id='tsparticles' options={particlesOptions} />
             <Navbar pages={pages} />
+            {notification.message && <Notification
+              message={notification.message}
+              error={notification.error}
+                                     />}
             <main style={{ flex: 1 }}>{children}</main>
             <Footer name='SupraChat' author='DeadOcean' />
             <Radio

@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import AppContext from './AppContext'
 
 const StyledContainer = styled.div`
   display: flex;

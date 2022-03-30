@@ -8,7 +8,6 @@ import Form, { Select } from './form/Form'
 import Button from './Button'
 import Icofont from './Icofont'
 import userService from '../services/user'
-import Notification from './Notification'
 import Seo from './Seo'
 import storageAvailable from '../utils/storageAvailable'
 
@@ -305,11 +304,7 @@ const Settings = () => {
 
   const passwordsAreEqual = value => value === password.current || 'Las contraseñas no coinciden.'
 
-  const [notification, setNotification] = useState({
-    message: '',
-    error: false
-  })
-  const { user, setUser } = useContext(AppContext)
+  const { user, setUser, setNotification } = useContext(AppContext)
   const [pictureUrl, setPictureUrl] = useState(null)
 
   useEffect(() => {
@@ -351,7 +346,7 @@ const Settings = () => {
       setNotification({ message: 'Error al guardar los cambios 😔', error: true })
     }
     setTimeout(() => {
-      setNotification({ ...notification, message: '' })
+      setNotification({ message: '', error: false })
     }, 3000)
   }
 
@@ -371,7 +366,7 @@ const Settings = () => {
       setNotification({ message: 'Error al subir imagen 😔', error: true })
     }
     setTimeout(() => {
-      setNotification({ ...notification, message: '' })
+      setNotification({ message: '', error: false })
     }, 3000)
     setPictureValue(null)
   }
@@ -386,9 +381,6 @@ const Settings = () => {
     <>
       <Seo title={`Editar perfil: ${user.nick}`} />
       <section>
-        {notification.message
-          ? <Notification message={notification.message} error={notification.error} />
-          : null}
         <Container>
           <UserContainer>
             <UserInfo>

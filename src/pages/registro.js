@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 import { navigate } from 'gatsby'
 import { useForm } from 'react-hook-form'
 import Seo from '../components/Seo'
@@ -6,7 +6,7 @@ import userService from '../services/user'
 import Container from '../components/Container'
 import Button from '../components/Button'
 import Form from '../components/form/Form'
-import Notification from '../components/Notification'
+import AppContext from '../components/AppContext'
 
 const forbiddenChars = [
   ' ',
@@ -36,7 +36,7 @@ const hasForbiddenChars = string => {
 
 const Registro = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
-  const [notification, setNotification] = useState({ message: '', error: false })
+  const { setNotification } = useContext(AppContext)
   const password = useRef({})
   password.current = watch('password')
 
@@ -75,7 +75,6 @@ const Registro = () => {
       />
       <section>
         <Container className='thin'>
-          {notification.message && <Notification message={notification.message} error={notification.error} />}
           <Form
             onSubmit={handleSubmit(onSubmit)}
             title='Registrate en SupraChat!'

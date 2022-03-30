@@ -9,12 +9,10 @@ import Button from '../components/Button'
 import Form from '../components/form/Form'
 import userService from '../services/user'
 import storageAvailable from '../utils/storageAvailable'
-import Notification from '../components/Notification'
 
 const Login = () => {
   const { register, handleSubmit } = useForm()
-  const { user, setUser } = useContext(AppContext)
-  const [notification, setNotification] = useState({ message: '', error: false })
+  const { user, setUser, setNotification } = useContext(AppContext)
 
   const onSubmit = async data => {
     try {
@@ -51,7 +49,7 @@ const Login = () => {
       } else {
         setNotification({ message: 'Error desconocido.', error: true })
       }
-      setTimeout(() => setNotification({ ...notification, message: '' }), 3000)
+      setTimeout(() => setNotification({ message: '', error: false }), 3000)
     }
   }
 
@@ -68,7 +66,6 @@ const Login = () => {
         description='Pantalla de inicio de sesión | SupraChat'
       />
       <section>
-        {notification.message ? <Notification message={notification.message} error={notification.error} /> : null}
         <Container className='thin'>
           <Form
             onSubmit={handleSubmit(onSubmit)}
