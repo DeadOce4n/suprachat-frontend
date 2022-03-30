@@ -29,7 +29,10 @@ const Login = () => {
       if (storageAvailable('localStorage')) {
         localStorage.setItem('storedUser', JSON.stringify(newUser))
       }
-      setTimeout(() => navigate('/'), 3000)
+      navigate('/')
+      setTimeout(() => {
+        setNotification({ message: '', error: false })
+      }, 3000)
     } catch (e) {
       if (e.response) {
         switch (e.response.status) {
