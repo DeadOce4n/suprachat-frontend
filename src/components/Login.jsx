@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { navigate } from 'gatsby'
 import { useForm } from 'react-hook-form'
 import jwt_decode, { InvalidTokenError } from 'jwt-decode'
