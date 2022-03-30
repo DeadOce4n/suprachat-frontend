@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import { navigate } from 'gatsby'
 import { useForm } from 'react-hook-form'
 import AppContext from './AppContext'
@@ -279,11 +279,14 @@ const Settings = () => {
   const {
     register: registerInfo,
     handleSubmit: handleSubmitInfo,
-    setValue: setInfoValue
+    setValue: setInfoValue,
+    watch: watchInfo,
+    formState: { errors: errorsInfo }
   } = useForm({
     defaultValues: {
       country: countries[Math.floor(Math.random() * (countries.length - 1))],
-      about: ''
+      about: '',
+      password: ''
     }
   })
 
@@ -296,6 +299,11 @@ const Settings = () => {
       picture: null
     }
   })
+
+  const password = useRef({})
+  password.current = watchInfo('password')
+
+  const passwordsAreEqual = value => value === password.current || 'Las contraseñas no coinciden.'
 
   const [notification, setNotification] = useState({
     message: '',
@@ -341,6 +349,9 @@ const Settings = () => {
     const formData = {
       country: data.country,
       about: data.about
+    }
+    if (data.password.length > 0) {
+      formData.password = data.password
     }
     const token = context.user.token
     const nick = context.user.nick
@@ -441,6 +452,12 @@ const Settings = () => {
               </Select>
               <label htmlFor='about'>Cuéntanos más sobre ti:</label>
               <textarea rows='3' maxLength='300' {...registerInfo('about')} />
+              <label htmlFor='password'>Nueva contraseña:</label>
+              <input type='password' {...registerInfo('password', { minLength: { value: 8, message: 'Deben ser 8 caracteres o más.' } })} />
+              {errorsInfo.password && <span className='error'>{errorsInfo.password.message || 'Este campo es obligatorio.'}</span>}
+              <label htmlFor='passwordConfirm'>Confirmar contraseña:</label>
+              <input type='password' {...registerInfo('passwordConfirm', { validate: v => passwordsAreEqual(v) })} />
+              {errorsInfo.passwordConfirm && <span className='error'>{errorsInfo.passwordConfirm.message || null}</span>}
               <Button type='submit' primary>
                 Guardar cambios
               </Button>
