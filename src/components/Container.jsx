@@ -36,11 +36,8 @@ const StyledContainer = styled.div`
 `
 
 const Container = ({ children, ...rest }) => {
-  const context = useContext(AppContext)
-  const theme = context.theme
-
   return (
-    <StyledContainer theme={theme} {...rest}>
+    <StyledContainer {...rest}>
       {children}
     </StyledContainer>
   )
