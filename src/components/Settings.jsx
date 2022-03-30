@@ -285,7 +285,8 @@ const Settings = () => {
     defaultValues: {
       country: countries[Math.floor(Math.random() * (countries.length - 1))],
       about: '',
-      password: ''
+      password: '',
+      passwordConfirm: ''
     }
   })
 
@@ -333,6 +334,8 @@ const Settings = () => {
       if (response.error) {
         throw new Error(response.error)
       }
+      setInfoValue('password', '')
+      setInfoValue('passwordConfirm', '')
       const updatedUser = { ...user, ...response }
       setUser(updatedUser)
       if (storageAvailable('localStorage')) {
