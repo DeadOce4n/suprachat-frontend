@@ -78,6 +78,7 @@ const Registro = () => {
           <Form
             onSubmit={handleSubmit(onSubmit)}
             title='Registrate en SupraChat!'
+            autoComplete='off'
           >
             <label htmlFor='username'>Nick:</label>
             <input

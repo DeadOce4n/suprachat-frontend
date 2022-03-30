@@ -414,7 +414,7 @@ const Settings = () => {
               </UserAvatar>
               <h1>{user.nick}</h1>
             </UserInfo>
-            <Form onSubmit={handleSubmitInfo(onSubmitInfo)}>
+            <Form onSubmit={handleSubmitInfo(onSubmitInfo)} autoComplete='off'>
               <Select
                 label='¿De qué país eres?'
                 {...registerInfo('country')}
@@ -426,10 +426,10 @@ const Settings = () => {
               <label htmlFor='about'>Cuéntanos más sobre ti:</label>
               <textarea rows='3' maxLength='300' {...registerInfo('about')} />
               <label htmlFor='password'>Nueva contraseña:</label>
-              <input type='password' {...registerInfo('password', { minLength: { value: 8, message: 'Deben ser 8 caracteres o más.' } })} />
+              <input type='password' autoComplete='new-password' {...registerInfo('password', { minLength: { value: 8, message: 'Deben ser 8 caracteres o más.' } })} />
               {errorsInfo.password && <span className='error'>{errorsInfo.password.message || 'Este campo es obligatorio.'}</span>}
               <label htmlFor='passwordConfirm'>Confirmar contraseña:</label>
-              <input type='password' {...registerInfo('passwordConfirm', { validate: v => passwordsAreEqual(v) })} />
+              <input type='password' autoComplete='new-password' {...registerInfo('passwordConfirm', { validate: v => passwordsAreEqual(v) })} />
               {errorsInfo.passwordConfirm && <span className='error'>{errorsInfo.passwordConfirm.message || null}</span>}
               <Button type='submit' primary>
                 Guardar cambios

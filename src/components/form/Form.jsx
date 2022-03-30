@@ -17,12 +17,12 @@ const Select = forwardRef(({ children, onChange, onBlur, name, label }, ref) => 
 
 Select.displayName = 'Select'
 
-const Form = ({ children, onSubmit, title }) => {
+const Form = ({ children, onSubmit, title, ...rest }) => {
   return (
     <>
       <StyledForm.Container>
         {title ? <h1>{title}</h1> : null}
-        <StyledForm.Form onSubmit={onSubmit}>
+        <StyledForm.Form onSubmit={onSubmit} {...rest}>
           <StyledForm.InputFields>
             {children}
           </StyledForm.InputFields>
