@@ -19,7 +19,6 @@ const register = async userObject => {
 }
 
 const verify = async userObject => {
-  console.log(userObject)
   const response = await axios.post(`${baseUrl}/users/verify`, userObject)
   return response.data
 }

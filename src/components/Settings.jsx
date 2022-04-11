@@ -328,9 +328,9 @@ const Settings = () => {
     if (data.password.length > 0) {
       formData.password = data.password
     }
-    const { token, nick } = user
+    const { token } = user
     try {
-      const response = await userService.update(nick, formData, token)
+      const response = await userService.update(formData, token)
       if (response.error) {
         throw new Error(response.error)
       }
