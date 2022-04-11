@@ -28,7 +28,8 @@ const Verify = () => {
         localStorage.setItem('storedUser', JSON.stringify(verifiedUser))
       }
       setNotification({ message: 'Verificación correcta 🎉', error: false })
-      setTimeout(() => navigate('/app/perfil'), 2000)
+      navigate('/app/perfil')
+      setTimeout(() => setNotification({ message: '', error: false }), 2000)
     } catch (e) {
       if (e.response) {
         switch (e.response.status) {
