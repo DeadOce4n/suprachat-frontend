@@ -30,8 +30,6 @@ const ChatPage = () => {
     }
   }, [])
 
-  console.log(`${chatUrl}&nick=${nick}`)
-
   return (
     <>
       <Seo
