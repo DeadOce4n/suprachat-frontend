@@ -29,8 +29,8 @@ const login = async userObject => {
   return response.data
 }
 
-const update = async (nick, formData, token) => {
-  const response = await axios.patch(`${baseUrl}/users/${nick}`, formData, {
+const update = async (formData, token) => {
+  const response = await axios.patch(`${baseUrl}/users`, formData, {
     headers: {
       'X-Access-Tokens': token
     }
