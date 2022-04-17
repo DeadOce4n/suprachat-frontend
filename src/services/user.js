@@ -37,8 +37,8 @@ const update = async (formData, token) => {
   return response.data
 }
 
-const updatePicture = async (formData, nick, token) => {
-  const response = await axios.post(`${baseUrl}/users/${nick}/picture`, formData, {
+const updatePicture = async (formData, token) => {
+  const response = await axios.post(`${baseUrl}/upload`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
       'X-Access-Tokens': token

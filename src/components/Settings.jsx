@@ -359,7 +359,7 @@ const Settings = () => {
       const picture = data.picture[0]
       const formData = new FormData()
       formData.append('file', picture)
-      await userService.updatePicture(formData, nick, token)
+      await userService.updatePicture(formData, token)
       setPictureUrl(URL.createObjectURL(picture))
       setNotification({
         message: 'Imagen actualizada correctamente 🎉',
