@@ -314,7 +314,7 @@ const Settings = () => {
       setUser(user)
       if (user.country) { setInfoValue('country', user.country) }
       if (user.about) { setInfoValue('about', user.about) }
-      setPictureUrl(`${baseUrl}/users/${user.nick}/picture`)
+      setPictureUrl(`${baseUrl}/upload/${user.picture}`)
     } else {
       navigate('/app/login')
     }
@@ -359,8 +359,12 @@ const Settings = () => {
       const picture = data.picture[0]
       const formData = new FormData()
       formData.append('file', picture)
-      await userService.updatePicture(formData, token)
+      const response = await userService.updatePicture(formData, token)
       setPictureUrl(URL.createObjectURL(picture))
+      if (storageAvailable('localStorage')) {
+        const storedUser = userService.getStoredUser()
+        localStorage.setItem('storedUser', JSON.stringify({ ...storedUser, picture: response.path }))
+      }
       setNotification({
         message: 'Imagen actualizada correctamente 🎉',
         error: false
