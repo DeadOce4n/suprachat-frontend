@@ -4,6 +4,7 @@ import Seo from '../components/Seo'
 import loadable from '@loadable/component'
 import Container from '../components/Container'
 import AppContext from '../components/AppContext'
+import userService from '../services/user'
 
 const GlobalStyle = createGlobalStyle`
   html, body { scroll-snap-type: y mandatory; }
@@ -20,13 +21,12 @@ const ChatFrame = loadable(() => import('../components/ChatFrame'), {
 })
 
 const ChatPage = () => {
-  const { user } = useContext(AppContext)
-  const chatUrl = `${process.env.GATSBY_KIWI_URL}?channel=${process.env.GATSBY_CHANNELS}`
+  const chatUrl = `${process.env.GATSBY_KIWI_URL}`
   const [nick, setNick] = useState('')
 
   useEffect(() => {
-    if (user.isAuthenticated) {
-      setNick(user.nick)
+    if (userService.isLoggedIn()) {
+      setNick(userService.getStoredUser().nick)
     }
   }, [])
 
@@ -44,7 +44,9 @@ const ChatPage = () => {
             tienes dudas 😉
           </h3>
           <ChatFrame
-            src={nick.length > 0 ? `${chatUrl}&nick=${nick}` : chatUrl}
+            src={nick.length > 0
+              ? `${chatUrl}?nick=${nick}&channel=${process.env.GATSBY_CHANNELS}`
+              : `${chatUrl}?channel=${process.env.GATSBY_CHANNELS}`}
             title='Ventana del chat.'
           />
         </Container>
