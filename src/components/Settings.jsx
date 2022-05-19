@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import { navigate } from 'gatsby'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState } from 'react-hook-form'
 import AppContext from './AppContext'
 import styled from 'styled-components'
 import Container from './Container'
@@ -265,6 +265,7 @@ const UserInfo = styled.div`
   flex-direction: column;
   h1 {
     text-align: center;
+    margin-top: 1.5rem;
   }
   @media only screen and (min-width: 40em) {
     max-width: 25rem;
@@ -293,12 +294,14 @@ const Settings = () => {
   const {
     register: registerPicture,
     handleSubmit: handleSubmitPicture,
-    setValue: setPictureValue
+    control
   } = useForm({
     defaultValues: {
       picture: null
     }
   })
+
+  const { errors } = useFormState({ control })
 
   const password = useRef({})
   password.current = watchInfo('password')
@@ -375,7 +378,6 @@ const Settings = () => {
     setTimeout(() => {
       setNotification({ message: '', error: false })
     }, 3000)
-    setPictureValue(null)
   }
 
   const onPictureChange = event => {
@@ -409,11 +411,16 @@ const Settings = () => {
                     {...registerPicture('picture', {
                       onChange: onPictureChange,
                       validate: {
-                        justOne: selected => selected?.length === 1 || 'No se ha seleccionado imagen.',
-                        fileSize: selected => selected[0]?.size <= 3000000 || 'Imagen demasiado grande.'
+                        justOne: selected => {
+                          return selected?.length === 1 || 'No se ha seleccionado imagen'
+                        },
+                        fileSize: selected => {
+                          return selected[0]?.size <= 3000000 || 'Imagen demasiado grande'
+                        }
                       }
                     })}
                   />
+                  {<span className={`picture-msg ${errors.picture ? 'picture-error' : ''}`}>{errors.picture?.message || 'Tamaño máximo 3MB'}</span>}
                 </Form>
               </UserAvatar>
               <h1>{user.nick}</h1>

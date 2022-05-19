@@ -79,6 +79,18 @@ const InputFields = styled.div`
     top: -20px;
     color: var(--color-error-${props => props.theme.theme});
   }
+  .picture-msg {
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    &.picture-error {
+      color: var(--color-error-${props => props.theme.theme});
+    }
+  }
   @media only screen and (min-width: 60em) {
     input, select, textarea { font-size: 1.5rem !important; }
   }
