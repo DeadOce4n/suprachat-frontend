@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
     isAuthenticated: false,
     isVerified: false
   })
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('dark')
   const [notification, setNotification] = useState({
     message: '',
     error: false

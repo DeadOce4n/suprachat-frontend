@@ -10,6 +10,7 @@ import Icofont from './Icofont'
 import userService from '../services/user'
 import Seo from './Seo'
 import storageAvailable from '../utils/storageAvailable'
+import { InvalidTokenError } from 'jwt-decode'
 
 const countries = [
   'Albania',
@@ -335,6 +336,9 @@ const Settings = () => {
     try {
       const response = await userService.update(formData, token)
       if (response.error) {
+        if (response.error === 'Invalid token') {
+          throw new InvalidTokenError('Tu sesión expiró, por favor inicia sesión de nuevo')
+        }
         throw new Error(response.error)
       }
       setInfoValue('password', '')
@@ -349,7 +353,16 @@ const Settings = () => {
         error: false
       })
     } catch (e) {
-      setNotification({ message: 'Error al guardar los cambios 😔', error: true })
+      if (e instanceof InvalidTokenError) {
+        localStorage.clear()
+        navigate('/')
+        setUser({
+          isAuthenticated: false,
+          token: null,
+          nick: null
+        })
+      }
+      setNotification({ message: e.message, error: true })
     }
     setTimeout(() => {
       setNotification({ message: '', error: false })
@@ -420,7 +433,7 @@ const Settings = () => {
                       }
                     })}
                   />
-                  {<span className={`picture-msg ${errors.picture ? 'picture-error' : ''}`}>{errors.picture?.message || 'Tamaño máximo 3MB'}</span>}
+                  <span className={`picture-msg ${errors.picture ? 'picture-error' : ''}`}>{errors.picture?.message || 'Tamaño máximo 3MB'}</span>
                 </Form>
               </UserAvatar>
               <h1>{user.nick}</h1>

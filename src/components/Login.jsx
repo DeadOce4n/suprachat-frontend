@@ -9,12 +9,20 @@ import Button from '../components/Button'
 import Form from '../components/form/Form'
 import userService from '../services/user'
 import storageAvailable from '../utils/storageAvailable'
+import Slider from './Slider'
 
 const Login = () => {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      username: '',
+      password: '',
+      rememberMe: false
+    }
+  })
   const { user, setUser, setNotification } = useContext(AppContext)
 
   const onSubmit = async data => {
+    console.log(data)
     try {
       const response = await userService.login(data)
       setNotification({ error: false, message: `Bienvenido, ${data.username}!` })
@@ -78,6 +86,10 @@ const Login = () => {
             <input type='text' {...register('username', { required: true })} />
             <label htmlFor='password'>Contraseña:</label>
             <input type='password' {...register('password', { required: true })} />
+            <Slider
+              label='Recordarme por 30 días'
+              {...register('rememberMe', { required: false })}
+            />
             <Button type='submit' primary>Iniciar sesión</Button>
           </Form>
         </Container>

@@ -18,7 +18,6 @@ const Form = styled.form`
 const InputFields = styled.div`
   display: flex;
   flex-direction: column;
-  alignt-items: center;
   justify-content: space-evenly;
   label {
     margin-bottom: 0.5rem;

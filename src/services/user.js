@@ -1,5 +1,6 @@
 import axios from 'axios'
 import storageAvailable from '../utils/storageAvailable'
+import { encode } from 'js-base64'
 
 const baseUrl = process.env.GATSBY_API_URL
 
@@ -24,7 +25,13 @@ const verify = async userObject => {
 }
 
 const login = async userObject => {
-  const response = await axios.get(`${baseUrl}/users/login`, { auth: { ...userObject } })
+  const {
+    username,
+    password,
+    rememberMe
+  } = userObject
+  const auth = encode(`${username}:${password}`)
+  const response = await axios.post(`${baseUrl}/users/login`, { rememberMe }, { headers: { Authorization: `Basic ${auth}` } })
   return response.data
 }
 
