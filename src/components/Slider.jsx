@@ -60,16 +60,16 @@ const Container = styled.div`
   }
 `
 
-const Slider = ({ label, ...rest }) => {
+const Slider = React.forwardRef(({ onChange, onBlur, name, label }, ref) => {
   return (
     <Container>
       <StyledLabel>
-        <input type='checkbox' {...rest} />
+        <input type='checkbox' ref={ref} onChange={onChange} onBlur={onBlur} name={name} />
         <span className='slider' />
       </StyledLabel>
       <span className='label'>{label}</span>
     </Container>
   )
-}
+})
 
 export default Slider

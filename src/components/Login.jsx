@@ -22,7 +22,6 @@ const Login = () => {
   const { user, setUser, setNotification } = useContext(AppContext)
 
   const onSubmit = async data => {
-    console.log(data)
     try {
       const response = await userService.login(data)
       setNotification({ error: false, message: `Bienvenido, ${data.username}!` })
