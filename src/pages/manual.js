@@ -378,7 +378,7 @@ const ManualPage = () => {
           </p>
           <ul className='compact'>
             <li>
-              Servidor: <code>irc.vicio.chat</code>
+              Servidor: <code>irc.suprachat.net</code>
             </li>
             <li>
               Puerto: <code>6697</code>
