@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@loadable/component": "^5.15.2",
+    "@tanstack/react-query": "^4.19.1",
+    "@tanstack/react-query-devtools": "^4.19.1",
     "axios": "^0.24.0",
     "babel-plugin-styled-components": "^2.0.2",
     "gatsby": "^4.3.0",
@@ -37,7 +39,6 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.25.0",
     "react-tsparticles": "^1.37.5",
-    "react-use-websocket": "^3.0.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {

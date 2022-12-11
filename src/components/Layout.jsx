@@ -84,10 +84,7 @@ const Layout = ({ children }) => {
                                      />}
             <main style={{ flex: 1 }}>{children}</main>
             <Footer name='SupraChat' author='DeadOcean' />
-            <Radio
-              radioUrl={process.env.GATSBY_RADIO_URL}
-              socketUrl={process.env.GATSBY_SOCKET_URL}
-            />
+            <Radio />
           </div>
         </ThemeProvider>
       </AppContext.Provider>
